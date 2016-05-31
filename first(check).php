@@ -45,22 +45,6 @@
 			  	if (ar.length == 2) scrollTo(parseInt(ar[0]), parseInt(ar[1]));
 			}
 
-
-			/*function cheerClick(image, num) {
-				//alert('"'+num+'"');
-				if(image=='http://localhost:81/img/cheer.png') {
-					//num.src = "http://localhost:81/img/cheer(click).png";
-					document.getElementById("'"+num+"'").src = "img/cheer(click).png";
-					//document.getElementById("0").src = "img/cheer(click).png";
-				}
-				else {
-					//alert("num");
-					//num.src = "http://localhost:81/img/cheer.png";
-					document.getElementById('"'+num+'"').src = "img/cheer.png";
-					//document.getElementById("0").src = "img/cheer(click).png";
-				}
-
-			}*/
 		</script>
 	</head>
 	<body onLoad="loadScroll()" onUnload="saveScroll()">
@@ -116,58 +100,6 @@
 				echo $string;
 				$num++;
 			}
-			/*
-				$string = "<script type = 'text/javascript'>";
-				$string .= "function cheerClick(image, num) {";
-				
-				
-				$query_cheer = "select sp.sup_index from schedule as s, support as sp where sp.sch_index = ".index." and sp.id ='".id."' and sp.flag = 'true'";
-				$result_cheer = mysql_query($query_cheer);
-				if(mysql_num_rows($result_cheer)==0) {
-					$query_cheer_add = "insert into support(sch_index, id, flag) values(".index.", '".id."', 'true')";
-					$result_cheer_add = mysql_query($query_cheer_add);
-					$query_cheer_up = "update schedule set cheer_up = cheer_up + 1 where sch_index = ".ind."";
-					$result_cheer_up = mysql_query($result_cheer_up);
-				}
-					
-				else {
-					$query_cheer_delete = "delete from support where sch_index = ".index.", id= '".id."'";
-					$result_cheer_delete = mysql_query($query_cheer_delete);
-					$query_cheer_down = "update schedule set cheer_up = cheer_up - 1 where sch_index = ".ind."";
-					$result_cheer_down = mysql_query($result_cheer_down);
-				}
-				$string .= "}</script>";
-
-				echo $string;		*/	
 		?>
-		<!--		
-		<form>
-			<fieldset style="width:500px; display: table; margin-left: auto; margin-right: auto;">
-				<legend>
-					<table>
-						<tr>
-							<td>
-								<img src= "img/person.png" width = "40px" height="40px">
-							</td>
-							<td>
-								이태우
-							</td>
-						<tr>
-					</table>
-				</legend> 
-				<div>&lt;2016-05-26 (목)&gt;</div><br/> 
-				<div>
-					<table style="width:100%;">
-						<tr>
-							<td style="width:200px; text-align:center;">PM 10:00 ~ PM 11:00</td> 
-							<td>코딩하기</td>
-						</tr>
-					</table>
-				</div><br/>
-				<img src = "img/button.png" style="position:relative; bottom:-5px; margin-right:5px; float:right;">
-				<img src = "img/button.png" style="position:relative; bottom:-5px; margin-right:10px; float:right;">
-				<img src = "img/button.png" style="position:relative; bottom:-5px; margin-right:10px; float:right;">
-			</fieldset>
-		</form> -->
 	</body>
 </html>
