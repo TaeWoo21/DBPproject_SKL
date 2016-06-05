@@ -46,8 +46,8 @@
 			  	dom.style = "visibility: visible;"
 			}
 
-			function commentView() {
-				dom = document.getElementById("comment_click");
+			function commentView(num) {
+				dom = document.getElementById("comment_click"+num);
 				if(dom.style.visibility=="visible"){
 					dom.style.visibility = "hidden";
 					dom.style.height = "0px";
@@ -97,7 +97,7 @@
 				$string .= "<tr><td style='width:340px'></td>";
 				$string .= "<td>";
 				$string .= "<img src = 'img/try.png' style='position:relative; bottom:-5px; margin-right:10px; float:right;' onclick = ''; onmouseover='this.src=\"img/try(over).png\" '; onmouseout='this.src=\"img/try.png\" '; onmousedown='this.src=\"img/try(click).png\"'; onmouseup='this.src=\"img/try(over).png\" '>";
-				$string .= "<img src = 'img/comment.png' style='position:relative; bottom:0px; margin-right:10px; float:right;' onclick ='commentView();' ; onmouseover='this.src=\"img/comment(over).png\" '; onmouseout='this.src=\"img/comment.png\" '; onmousedown='this.src=\"img/comment(click).png\"'; onmouseup='this.src=\"img/comment(over).png\" '>";
+				$string .= "<img src = 'img/comment.png' style='position:relative; bottom:0px; margin-right:10px; float:right;' onclick ='commentView(".$row['sch_index'].");' ; onmouseover='this.src=\"img/comment(over).png\" '; onmouseout='this.src=\"img/comment.png\" '; onmousedown='this.src=\"img/comment(click).png\"'; onmouseup='this.src=\"img/comment(over).png\" '>";
 
 				$query_cheer = "select sp.sup_index from schedule as s, support as sp where sp.sch_index = ".$row['sch_index']." and sp.id ='".$_GET['id']."' and sp.flag = 'true'";
 				$result_cheer = mysql_query($query_cheer);
@@ -120,7 +120,7 @@
 				$query_comment = "select com_index, id, com_date, content from comment where sch_index = ".$row['sch_index']." order by com_date desc";
 				$result_comment = mysql_query($query_comment);
 
-				$string .= "<div id='comment_click' style='visibility:hidden; height:0px;'>";
+				$string .= "<div id='comment_click".$row['sch_index']."' style='visibility:hidden; height:0px;'>";
 				while($row2 = mysql_fetch_assoc($result_comment)){
 					$string .= "<hr/>";
 					$string .= "<table>";
