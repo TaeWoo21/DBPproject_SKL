@@ -17,6 +17,7 @@
 		$result_cheer_down = mysql_query($query_cheer_down);
 	}
 	
+	@mysql_close();
 	$url = "http://localhost:81/first(check).php?id=testuser1'";
 	echo "<meta http-equiv='Refresh' content='0; URL=$url>"; 
 ?>
