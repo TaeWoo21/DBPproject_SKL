@@ -2,6 +2,7 @@
 	require("connect_today.php");
 	session_start();
 	
+	$index = $_GET['index'];
 	$date = $_GET['date'];
 	$start = $_GET['start'];
 	$finish = $_GET['finish'];
@@ -25,10 +26,22 @@
 
 	}
 	if($bol_check) {
-		$query_tryinsert = "insert into schedule (id, friend_range, sch_date, content, sch_start_time, sch_finish_time, cheer_num) values ('".$_SESSION['userid']."', ".$range.", '".$date."', '".$content."', '".$start."', '".$finish."', 0 )";
-		$result_tryinsert = mysql_query($query_tryinsert);
+		$query_tryTF = "select id from entry where sch_index = ".$index." and id ='".$_SESSION['userid']."' ";
+		$result_tryTF = mysql_query($query_tryTF);
+		if(!mysql_num_rows($result_tryTF)) {
+			$query_tryinsert = "insert into entry (sch_index, id) values (".$index.", '".$_SESSION['userid']."' )";
+			$result_tryinsert = mysql_query($query_tryinsert);
 	
-		echo "<script>alert(\"일정이 추가되었습니다.\");</script>";
+			echo "<script>alert(\"일정이 추가되었습니다.\");</script>";
+		}
+						
+		else {
+			$query_trydelete = "delete from entry where id= '".$_SESSION['userid']."'";
+			$result_trydelete = mysql_query($query_trydelete);
+
+			echo "<script>alert(\"일정이 삭제되었습니다.\");</script>";
+		}
+		
 	}
 	else {
 		echo "<script>alert(\"일정이 겹쳐서 추가할 수 없습니다.\");</script>";

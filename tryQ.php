@@ -59,7 +59,14 @@
 				$string .= "<img src= 'img/cancle(default).png'  onclick='history.back();' onmouseover='this.src=\"img/cancle(over).png\" '; onmouseout='this.src=\"img/cancle(default).png\"';>";
 				$string .= "</td>";
 				$string .= "<td>";
-				$string .="<img src= 'img/add(default).png' onclick='location.href=\"http://localhost:81/tryInsert.php?date=".$row['sch_date']."&start=".$row['sch_start_time']."&finish=".$row['sch_finish_time']."&content=".$row['content']."&range=".$row['friend_range']."\"'  onmouseover='this.src=\"img/add(over).png\" '; onmouseout='this.src=\"img/add(default).png\"';>";
+				$query_AddDel = "select id from entry where sch_index = ".$index." and id ='".$_SESSION['userid']."' ";
+				$result_AddDel = mysql_query($query_AddDel);
+				if(mysql_num_rows($result_AddDel)==0){
+					$string .="<img src= 'img/add(default).png' onclick='location.href=\"http://localhost:81/tryInsert.php?index=".$index."&date=".$row['sch_date']."&start=".$row['sch_start_time']."&finish=".$row['sch_finish_time']."&content=".$row['content']."&range=".$row['friend_range']."\"'  onmouseover='this.src=\"img/add(over).png\" '; onmouseout='this.src=\"img/add(default).png\"';>";
+				}
+				else {
+					$string .="<img src= 'img/try_del(default).png' onclick='location.href=\"http://localhost:81/tryInsert.php?index=".$index."&date=".$row['sch_date']."&start=".$row['sch_start_time']."&finish=".$row['sch_finish_time']."&content=".$row['content']."&range=".$row['friend_range']."\"'  onmouseover='this.src=\"img/try_del(over).png\" '; onmouseout='this.src=\"img/try_del(default).png\"';>";
+				}
 				$string .= "</td></tr></table>";
 				$string .= "</div>";
 				$string .= "</fieldset></form><br/><br/>";

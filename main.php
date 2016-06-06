@@ -107,7 +107,14 @@
 				$string .= "<tr><td style='width:370px'></td>";
 				$string .= "<td>";
 				if($_SESSION['userid'] != $row['id']){
-					$string .= "<img src = 'img/try(default).png' style='position:relative; bottom:-5px; margin-right:5px; float:right;'' onclick= 'location.href=\"http://localhost:81/tryQ.php?index=".$row['sch_index']."\"' onmouseover='this.src=\"img/try(over).png\" '; onmouseout='this.src=\"img/try(default).png\"';>";
+					$query_try = "select id from entry where sch_index = ".$row['sch_index']." and id ='".$_SESSION['userid']."' ";
+					$result_try = mysql_query($query_try);
+					if(mysql_num_rows($result_try)==0){
+						$string .= "<img src = 'img/try(default).png' style='position:relative; bottom:-5px; margin-right:5px; float:right;'' onclick= 'location.href=\"http://localhost:81/tryQ.php?index=".$row['sch_index']."\"' onmouseover='this.src=\"img/try(over).png\" '; onmouseout='this.src=\"img/try(default).png\"';>";
+					}
+					else {
+						$string .= "<img src = 'img/try(over).png' style='position:relative; bottom:-5px; margin-right:5px; float:right;'' onclick= 'location.href=\"http://localhost:81/tryQ.php?index=".$row['sch_index']."\"' onmouseover='this.src=\"img/try(default).png\" '; onmouseout='this.src=\"img/try(over).png\"';>";
+					}
 				}
 				$string .= "<img src = 'img/comment(default).png' style='position:relative; bottom:-5px; margin-right:10px; float:right;' onclick = 'commentView(".$row['sch_index'].");'; onmouseover='this.src=\"img/comment(over).png\" '; onmouseout='this.src=\"img/comment(default).png\"';>";
 
